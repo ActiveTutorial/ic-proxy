@@ -1,4 +1,4 @@
-const { initialize, getPair, checkResult } = require('./lib/index');
+const { initialize, pair, check } = require('./lib/index');
 
 (async () => {
   await initialize();

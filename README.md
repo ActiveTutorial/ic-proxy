@@ -19,7 +19,7 @@ npm install git+https://github.com/ActiveTutorial/ic-proxy.git
 
 ## Usage
 
-```javascript
+```js
 const { initialize, getPair, checkResult } = require('ic-proxy');
 
 (async () => {
