@@ -11,10 +11,10 @@ Simple Node.js library to interact with the Infinite Craft API.
 
 ## Installation
 
-Install the library using npm:
+Install the library using npm from GitHub:
 
 ```sh
-npm install ic-proxy
+npm install git+https://github.com/ActiveTutorial/ic-proxy.git
 ```
 
 ## Usage
