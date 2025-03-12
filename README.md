@@ -1,63 +1,64 @@
 # Infinite Craft Proxy
 
-Simple Node.js proxy to interact with the Infinite Craft API.
+Simple Node.js library to interact with the Infinite Craft API.
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [API Endpoints](#api-endpoints)
+- [API](#api)
 - [License](#license)
 
 ## Installation
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/ActiveTutorial/ic-proxy.git
-    cd ic-proxy
-    ```
+Install the library using npm:
 
-2. Install dependencies:
-    ```sh
-    npm i
-    ```
+```sh
+npm install ic-proxy
+```
 
 ## Usage
 
-Start the server:
-```sh
-npm start
+```javascript
+const { initialize, getPair, checkResult } = require('ic-proxy');
+
+(async () => {
+  await initialize();
+
+  try {
+    const pairResult = await getPair('Water', 'Fire');
+    console.log('Pair Result:', pairResult);
+
+    const checkResult = await checkResult('Fire', 'Water', 'Steam');
+    console.log('Check Result:', checkResult);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+})();
 ```
 
-The server will run on `http://localhost:3001`.
+## API
 
-## API Endpoints
+### `initialize()`
 
-### `/pair`
+Initializes the Puppeteer browser instance. Must be called before using other functions.
+
+### `getPair(first, second)`
 
 - **Description**: Get a pair result from the Infinite Craft API (used when combining items).
-- **Method**: GET
-- **Query Parameters**:
+- **Parameters**:
   - `first` (string): The first parameter.
   - `second` (string): The second parameter.
-- **Example**:
-  ```sh
-  curl "http://localhost:3001/pair?first=Water&second=Fire"
-  ```
+- **Returns**: A promise that resolves to the pair result.
 
-### `/check`
+### `checkResult(first, second, result)`
 
 - **Description**: Check a result from the Infinite Craft API.
-- **Method**: GET
-- **Query Parameters**:
+- **Parameters**:
   - `first` (string): The first parameter.
   - `second` (string): The second parameter.
   - `result` (string): The result parameter.
-- **Example**:
-  ```sh
-  curl "http://localhost:3001/check?first=Fire&second=Water&result=Steam"
-  ```
-
+- **Returns**: A promise that resolves to the check result.
 
 ## License
 

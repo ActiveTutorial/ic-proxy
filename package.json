@@ -1,12 +1,8 @@
 {
   "name": "ic-proxy",
   "version": "1.0.0",
-  "description": "Simple nodejs proxy to interact with infinite craft API",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
+  "description": "Simple Node.js library to interact with the Infinite Craft API",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ActiveTutorial/ic-proxy.git"
@@ -18,7 +14,6 @@
   },
   "homepage": "https://github.com/ActiveTutorial/ic-proxy#readme",
   "dependencies": {
-    "express": "^4.21.2",
     "puppeteer": "^24.4.0"
   }
 }
