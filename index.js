@@ -42,6 +42,36 @@ app.get('/pair', async (req, res) => {
   }
 });
 
+app.get('/check', async (req, res) => {
+  const { first, second, result } = req.query; // Get 'first', 'second', and 'result' from the query string
+
+  if (!first || !second || !result) {
+    return res.status(400).json({ error: 'All "first", "second", and "result" parameters are required.' });
+  }
+
+    try {
+        // Set useragent to "M", which is all that cloudflare checks
+        await page.setUserAgent('M');
+    
+        // Build the URL with the dynamic 'first', 'second', and 'result' parameters
+        const url = `https://neal.fun/api/infinite-craft/check?ref=app&first=${first}&second=${second}&result=${result}`;
+    
+        // Navigate to the URL
+        const response = await page.goto(url);
+    
+        // Get the body of the response
+        const body = await response.json();
+    
+        // Send the response body as the response to the client
+        res.json(body);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('An error occurred');
+    }
+
+});
+
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
@@ -49,3 +79,4 @@ app.listen(port, () => {
 
 // Example usage:
 // http://localhost:3001/pair?first=React&second=Vue
+// http://localhost:3001/check?first=React&second=Vue&result=Angular
