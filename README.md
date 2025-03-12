@@ -20,16 +20,16 @@ npm install git+https://github.com/ActiveTutorial/ic-proxy.git
 ## Usage
 
 ```js
-const { initialize, getPair, checkResult } = require('ic-proxy');
+const { initializeIC, pair, check } = require('ic-proxy');
 
 (async () => {
-  await initialize();
+  await initializeIC();
 
   try {
-    const pairResult = await getPair('Water', 'Fire');
+    const pairResult = await pair('Water', 'Fire');
     console.log('Pair Result:', pairResult);
 
-    const checkResult = await checkResult('Fire', 'Water', 'Steam');
+    const checkResult = await check('Fire', 'Water', 'Steam');
     console.log('Check Result:', checkResult);
   } catch (error) {
     console.error('Error:', error);
@@ -39,11 +39,11 @@ const { initialize, getPair, checkResult } = require('ic-proxy');
 
 ## API
 
-### `initialize()`
+### `initializeIC()`
 
 Initializes the Puppeteer browser instance. Must be called before using other functions.
 
-### `getPair(first, second)`
+### `pair(first, second)`
 
 - **Description**: Get a pair result from the Infinite Craft API (used when combining items).
 - **Parameters**:
@@ -51,7 +51,7 @@ Initializes the Puppeteer browser instance. Must be called before using other fu
   - `second` (string): The second parameter.
 - **Returns**: A promise that resolves to the pair result.
 
-### `checkResult(first, second, result)`
+### `check(first, second, result)`
 
 - **Description**: Check a result from the Infinite Craft API.
 - **Parameters**:
