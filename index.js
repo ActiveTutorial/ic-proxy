@@ -1,13 +1,13 @@
-const { initialize, pair, check } = require('./lib/index');
+const { initializeIC, pair, check } = require('./lib/index');
 
 (async () => {
-  await initialize();
+  await initializeIC();
 
   try {
-    const pairResult = await getPair('Water', 'Fire');
+    const pairResult = await pair('Water', 'Fire');
     console.log('Pair Result:', pairResult);
 
-    const checkResult = await checkResult('Fire', 'Water', 'Steam');
+    const checkResult = await check('Fire', 'Water', 'Steam');
     console.log('Check Result:', checkResult);
   } catch (error) {
     console.error('Error:', error);
