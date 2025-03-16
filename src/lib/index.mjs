@@ -1,9 +1,13 @@
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
+/** @type {puppeteer.Browser} */
 let browser;
 let page;
 
-const initializeIC = async () => {
+/**
+ * Initializes the browser and page for API requests.
+ */
+export const initializeIC = async () => {
   if (!browser) {
     browser = await puppeteer.launch({ headless: true });
     page = await browser.newPage();
@@ -11,7 +15,13 @@ const initializeIC = async () => {
   }
 };
 
-const pair = async (first, second) => {
+/**
+ * Pairs two items and returns the result from the Infinite Craft API.
+ * @param {string} first
+ * @param {string} second
+ * @returns {Promise<any>}
+ */
+export const pair = async (first, second) => {
   if (!first || !second) {
     throw new Error('Both "first" and "second" parameters are required.');
   }
@@ -22,7 +32,14 @@ const pair = async (first, second) => {
   return await response.json();
 };
 
-const check = async (first, second, result) => {
+/**
+ * Checks if a result is valid for a given pair of items.
+ * @param {string} first
+ * @param {string} second
+ * @param {string} result
+ * @returns {Promise<any>}
+ */
+export const check = async (first, second, result) => {
   if (!first || !second || !result) {
     throw new Error('All "first", "second", and "result" parameters are required.');
   }
@@ -31,10 +48,4 @@ const check = async (first, second, result) => {
   const url = `https://neal.fun/api/infinite-craft/check?ref=app&first=${first}&second=${second}&result=${result}`;
   const response = await page.goto(url);
   return await response.json();
-};
-
-module.exports = {
-  initializeIC,
-  pair,
-  check,
 };
