@@ -1,8 +1,8 @@
 {
   "name": "ic-proxy",
-  "version": "2.0.0",
-  "description": "Simple Node.js library to interact with the Infinite Craft API",
-  "main": "dist/lib/index.mjs",
+  "version": "2.1.0",
+  "description": "A simple Node.js library to interact with the Infinite Craft API",
+  "main": "src/lib",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ActiveTutorial/ic-proxy.git"
@@ -19,9 +19,5 @@
   "devDependencies": {
     "typescript": "^5.0.0"
   },
-  "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/lib/index.mjs"
-  }
+  "type": "module"
 }

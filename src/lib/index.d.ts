@@ -1,5 +1,3 @@
-import puppeteer from 'puppeteer';
-
 /**
  * Initializes the browser and page for API requests.
  */
