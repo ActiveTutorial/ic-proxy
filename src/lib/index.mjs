@@ -19,7 +19,7 @@ export const initializeIC = async () => {
  * Pairs two items and returns the result from the Infinite Craft API.
  * @param {string} first
  * @param {string} second
- * @returns {Promise<any>}
+ * @returns {Promise<{result: string, emoji: string, isNew: boolean}>}
  */
 export const pair = async (first, second) => {
   if (!first || !second) {
@@ -37,7 +37,7 @@ export const pair = async (first, second) => {
  * @param {string} first
  * @param {string} second
  * @param {string} result
- * @returns {Promise<any>}
+ * @returns {Promise<{valid: boolean, emoji: string}>}
  */
 export const check = async (first, second, result) => {
   if (!first || !second || !result) {
