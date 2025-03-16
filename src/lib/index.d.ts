@@ -9,7 +9,7 @@ export declare const initializeIC: () => Promise<void>;
  * @param second - The second item.
  * @returns A promise that resolves to the result from the API.
  */
-export declare const pair: (first: string, second: string) => Promise<any>;
+export declare const pair: (first: string, second: string) => Promise<{result: string, emoji: string, isNew: boolean}>;
 
 /**
  * Checks if a result is valid for a given pair of items.
@@ -18,4 +18,4 @@ export declare const pair: (first: string, second: string) => Promise<any>;
  * @param result - The expected result.
  * @returns A promise that resolves to the result from the API.
  */
-export declare const check: (first: string, second: string, result: string) => Promise<any>;
+export declare const check: (first: string, second: string, result: string) => Promise<{valid: boolean, emoji: string}>;
