@@ -30,69 +30,80 @@ npm install git+https://github.com/ActiveTutorial/ic-proxy.git
 For JavaScript (ES modules) users:
 
 ```js
-import { initializeIC, pair, check } from 'ic-proxy';
+import InfiniteCraftProxy from 'ic-proxy';
 
 (async () => {
-  await initializeIC();
+  // Create and initialize the instance using the static create() method.
+  const api = await InfiniteCraftProxy.create();
 
   try {
-    const pairResult = await pair('Water', 'Fire');
+    const pairResult = await api.pair('Water', 'Fire');
     console.log('Pair Result:', pairResult);
 
-    const checkResult = await check('Fire', 'Water', 'Steam');
+    const checkResult = await api.check('Fire', 'Water', 'Steam');
     console.log('Check Result:', checkResult);
   } catch (error) {
     console.error('Error:', error);
+  } finally {
+    await api.close();
   }
 })();
 ```
 
 ### TypeScript
 
-For TypeScript users, simply import and use the same functions. Type definitions are included with the package:
+For TypeScript users, simply import and use the API as follows:
 
 ```ts
-import { initializeIC, pair, check } from 'ic-proxy';
+import InfiniteCraftProxy from 'ic-proxy';
 
 (async () => {
-  await initializeIC();
+  // Create and initialize the instance using the static create() method.
+  const api = await InfiniteCraftProxy.create();
 
   try {
-    const pairResult = await pair('Water', 'Fire');
+    const pairResult = await api.pair('Water', 'Fire');
     console.log('Pair Result:', pairResult);
 
-    const checkResult = await check('Fire', 'Water', 'Steam');
+    const checkResult = await api.check('Fire', 'Water', 'Steam');
     console.log('Check Result:', checkResult);
   } catch (error) {
     console.error('Error:', error);
+  } finally {
+    await api.close();
   }
 })();
 ```
 
 ## API
 
-### `initializeIC()`
+### `create()`
 
-Initializes the Puppeteer browser instance. This must be called before using other functions.
-
-**Returns**: A promise that resolves once the browser is initialized.
+Creates and initializes an instance of `InfiniteCraftProxy`.  
+**Note:** Direct instantiation with `new InfiniteCraftProxy()` will throw an error.  
+**Returns:** A promise that resolves to a fully initialized instance.
 
 ### `pair(first, second)`
 
-- **Description**: Gets a pair result from the Infinite Craft API (used when combining items).
-- **Parameters**:
+- **Description:** Retrieves a pair result from the Infinite Craft API.
+- **Parameters:**
   - `first` (string): The first item.
   - `second` (string): The second item.
-- **Returns**: A promise that resolves to the pair result from the API.
+- **Returns:** A promise that resolves to the pair result from the API, containing an object with `result`, `emoji`, and `isNew` properties.
 
 ### `check(first, second, result)`
 
-- **Description**: Checks the validity of a result from the Infinite Craft API for a given pair of items.
-- **Parameters**:
+- **Description:** Validates a result from the Infinite Craft API for a given pair of items.
+- **Parameters:**
   - `first` (string): The first item.
   - `second` (string): The second item.
   - `result` (string): The expected result.
-- **Returns**: A promise that resolves to the check result from the API.
+- **Returns:** A promise that resolves to the check result from the API, containing an object with `valid` and `emoji` properties.
+
+### `close()`
+
+- **Description:** Closes the Puppeteer browser instance.
+- **Returns:** A promise that resolves once the browser is closed.
 
 ## License
 
