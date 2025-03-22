@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+let puppeteer = await import('puppeteer');
 
 class InfiniteCraftProxy {
   /** @type {puppeteer.Browser | null} */
@@ -11,7 +11,7 @@ class InfiniteCraftProxy {
 
   constructor() {
     if (!InfiniteCraftProxy._allowInstantiation) {
-      throw new Error('Please use InfiniteCraftProxy.create() to instantiate this class.');
+      throw new Error('Use InfiniteCraftProxy.create() to instantiate this class.');
     }
   }
 
@@ -26,7 +26,7 @@ class InfiniteCraftProxy {
 
     instance.browser = await puppeteer.launch({ headless: true });
     instance.page = await instance.browser.newPage();
-    console.log('Puppeteer browser launched');
+    console.log('ic-proxy: Puppeteer browser launched');
     return instance;
   }
 
@@ -58,7 +58,7 @@ class InfiniteCraftProxy {
     }
     const url = `https://neal.fun/api/infinite-craft/check?ref=app&first=${first}&second=${second}&result=${result}`;
     const response = await this.page.goto(url);
-    return await response.json();
+    return response.json();
   }
 
   /**
