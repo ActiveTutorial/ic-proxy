@@ -1,4 +1,4 @@
-let puppeteer = await import('puppeteer');
+import puppeteer from 'puppeteer';
 
 class InfiniteCraftProxy {
   /** @type {puppeteer.Browser | null} */
