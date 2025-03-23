@@ -40,7 +40,7 @@ class InfiniteCraftProxy {
     if (!first || !second) {
       throw new Error('Both "first" and "second" parameters are required.');
     }
-    await page.setUserAgent('M');
+    await this.page.setUserAgent('M');
     const url = `https://neal.fun/api/infinite-craft/pair?ref=app&first=${first}&second=${second}`;
     const response = await this.page.goto(url);
     return await response.json();
@@ -57,7 +57,7 @@ class InfiniteCraftProxy {
     if (!first || !second || !result) {
       throw new Error('All "first", "second", and "result" parameters are required.');
     }
-    await page.setUserAgent('M');
+    await this.page.setUserAgent('M');
     const url = `https://neal.fun/api/infinite-craft/check?ref=app&first=${first}&second=${second}&result=${result}`;
     const response = await this.page.goto(url);
     return response.json();
