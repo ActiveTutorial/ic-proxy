@@ -24,7 +24,11 @@ class InfiniteCraftProxy {
     const instance = new InfiniteCraftProxy();
     InfiniteCraftProxy._allowInstantiation = false;
 
-    instance.browser = await puppeteer.launch({ headless: true });
+    instance.browser = await puppeteer.launch({
+      executablePath: '/usr/bin/google-chrome-stable',
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu'],
+      headless: 'new'
+    });
     instance.page = await instance.browser.newPage();
     console.log('ic-proxy: Puppeteer browser launched');
     return instance;
