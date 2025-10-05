@@ -1,6 +1,6 @@
 # Infinite Craft Proxy
 
-A simple Node.js library to interact with the Infinite Craft API.
+A simple multi platform Node.js library to interact with the Infinite Craft API.
 
 ## Table of Contents
 
@@ -17,37 +17,7 @@ You can install the library via npm from GitHub:
 npm install git+https://github.com/ActiveTutorial/ic-proxy.git
 ```
 
-Alternatively, if you're using TypeScript, ensure you also install the necessary types for TypeScript users:
-
-```sh
-npm install git+https://github.com/ActiveTutorial/ic-proxy.git
-```
-
 ## Usage
-
-### JavaScript (ESM)
-
-For JavaScript (ES modules) users:
-
-```js
-import { pair, check } from 'ic-proxy';
-
-(async () => {
-  try {
-    const pairResult = await pair('Water', 'Fire');
-    console.log('Pair Result:', pairResult);
-
-    const checkResult = await check('Fire', 'Water', 'Steam');
-    console.log('Check Result:', checkResult);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-})();
-```
-
-### TypeScript
-
-For TypeScript users, simply import and use the API as follows:
 
 ```ts
 import { pair, check } from 'ic-proxy';
