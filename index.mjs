@@ -1,4 +1,9 @@
-import { req } from "koffi-curl";
+import {
+  Session,
+  ClientIdentifier,
+  initTLS,
+  destroyTLS,
+} from "node-tls-client";
 
 /**
  * Pairs two items and returns the result from the Infinite Craft API.
@@ -6,24 +11,29 @@ import { req } from "koffi-curl";
  * @param {string} second - The second item.
  * @returns {Promise<{result: string, emoji: string, isNew: boolean}>}
  */
-export function pair(first, second) {
+export async function pair(first, second) {
   if (!first || !second) {
-    return Promise.reject(new Error('Both "first" and "second" parameters are required.'));
+    throw new Error('Both "first" and "second" parameters are required.');
   }
+  await initTLS();
+  const session = new Session({
+    clientIdentifier: ClientIdentifier.chrome_103,
+    timeout: 5000,
+  });
   const url = `https://neal.fun/api/infinite-craft/pair?first=${encodeURIComponent(first)}&second=${encodeURIComponent(second)}`;
-  return req.get(url, {
-    impersonate: "chrome136",
-    userAgent: "M",
-    headers: {
-      Referer: "https://neal.fun/infinite-craft/"
-    }
-  })
-    .then(r => {
-      if (r.data) {
-        return typeof r.data === 'string' ? JSON.parse(r.data) : r.data;
+  try {
+    const response = await session.get(url, {
+      headers: {
+        "Referer": "https://neal.fun/infinite-craft/",
+        "User-Agent": "M"
       }
-      throw new Error('Unexpected response format');
     });
+    const text = await response.text();
+    return JSON.parse(text);
+  } finally {
+    await session.close();
+    await destroyTLS();
+  }
 }
 
 /**
@@ -33,22 +43,27 @@ export function pair(first, second) {
  * @param {string} result - The expected result.
  * @returns {Promise<{valid: boolean, emoji: string}>}
  */
-export function check(first, second, result) {
+export async function check(first, second, result) {
   if (!first || !second || !result) {
-    return Promise.reject(new Error('All "first", "second", and "result" parameters are required.'));
+    throw new Error('All "first", "second", and "result" parameters are required.');
   }
+  await initTLS();
+  const session = new Session({
+    clientIdentifier: ClientIdentifier.chrome_103,
+    timeout: 5000,
+  });
   const url = `https://neal.fun/api/infinite-craft/check?first=${encodeURIComponent(first)}&second=${encodeURIComponent(second)}&result=${encodeURIComponent(result)}`;
-  return req.get(url, {
-    impersonate: "chrome136",
-    userAgent: "M",
-    headers: {
-      Referer: "https://neal.fun/infinite-craft/"
-    }
-  })
-    .then(r => {
-      if (r.data) {
-        return typeof r.data === 'string' ? JSON.parse(r.data) : r.data;
+  try {
+    const response = await session.get(url, {
+      headers: {
+        "Referer": "https://neal.fun/infinite-craft/",
+        "User-Agent": "M"
       }
-      throw new Error('Unexpected response format');
     });
+    const text = await response.text();
+    return JSON.parse(text);
+  } finally {
+    await session.close();
+    await destroyTLS();
+  }
 }
