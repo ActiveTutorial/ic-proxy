@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ActiveTutorial/ic-proxy#readme",
   "dependencies": {
-    "tls-client": "0.0.5"
+    "koffi-curl":"^0.1.23"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
