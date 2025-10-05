@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ActiveTutorial/ic-proxy#readme",
   "dependencies": {
-    "puppeteer": "^24.4.0"
+    "tls-client": "0.0.5"
   },
   "devDependencies": {
     "typescript": "^5.0.0"

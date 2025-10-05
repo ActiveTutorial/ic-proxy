@@ -30,22 +30,17 @@ npm install git+https://github.com/ActiveTutorial/ic-proxy.git
 For JavaScript (ES modules) users:
 
 ```js
-import InfiniteCraftProxy from 'ic-proxy';
+import { pair, check } from 'ic-proxy';
 
 (async () => {
-  // Create and initialize the instance using the static create() method.
-  const api = await InfiniteCraftProxy.create();
-
   try {
-    const pairResult = await api.pair('Water', 'Fire');
+    const pairResult = await pair('Water', 'Fire');
     console.log('Pair Result:', pairResult);
 
-    const checkResult = await api.check('Fire', 'Water', 'Steam');
+    const checkResult = await check('Fire', 'Water', 'Steam');
     console.log('Check Result:', checkResult);
   } catch (error) {
     console.error('Error:', error);
-  } finally {
-    await api.close();
   }
 })();
 ```
@@ -55,33 +50,22 @@ import InfiniteCraftProxy from 'ic-proxy';
 For TypeScript users, simply import and use the API as follows:
 
 ```ts
-import InfiniteCraftProxy from 'ic-proxy';
+import { pair, check } from 'ic-proxy';
 
 (async () => {
-  // Create and initialize the instance using the static create() method.
-  const api = await InfiniteCraftProxy.create();
-
   try {
-    const pairResult = await api.pair('Water', 'Fire');
+    const pairResult = await pair('Water', 'Fire');
     console.log('Pair Result:', pairResult);
 
-    const checkResult = await api.check('Fire', 'Water', 'Steam');
+    const checkResult = await check('Fire', 'Water', 'Steam');
     console.log('Check Result:', checkResult);
   } catch (error) {
     console.error('Error:', error);
-  } finally {
-    await api.close();
   }
 })();
 ```
 
 ## API
-
-### `create()`
-
-Creates and initializes an instance of `InfiniteCraftProxy`.  
-**Note:** Direct instantiation with `new InfiniteCraftProxy()` will throw an error.  
-**Returns:** A promise that resolves to a fully initialized instance.
 
 ### `pair(first, second)`
 
@@ -99,11 +83,6 @@ Creates and initializes an instance of `InfiniteCraftProxy`.
   - `second` (string): The second item.
   - `result` (string): The expected result.
 - **Returns:** A promise that resolves to the check result from the API, containing an object with `valid` and `emoji` properties.
-
-### `close()`
-
-- **Description:** Closes the Puppeteer browser instance.
-- **Returns:** A promise that resolves once the browser is closed.
 
 ## License
 
