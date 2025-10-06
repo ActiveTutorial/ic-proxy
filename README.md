@@ -43,7 +43,7 @@ import { pair, check } from 'ic-proxy';
 - **Parameters:**
   - `first` (string): The first item.
   - `second` (string): The second item.
-- **Returns:** A promise that resolves to the pair result from the API, containing an object with `result`, `emoji`, and `isNew` properties.
+- **Returns:** A promise that resolves to an object with `result`, `emoji`, and `isNew` properties. If the API returns an error (HTTP 500), the object will be `{ result: null, emoji: null, isNew: false }`.
 
 ### `check(first, second, result)`
 
@@ -52,7 +52,7 @@ import { pair, check } from 'ic-proxy';
   - `first` (string): The first item.
   - `second` (string): The second item.
   - `result` (string): The expected result.
-- **Returns:** A promise that resolves to the check result from the API, containing an object with `valid` and `emoji` properties.
+- **Returns:** A promise that resolves to an object with `valid` and `emoji` properties. If the API returns an error (HTTP 500), the object will be `{ valid: false, emoji: null }`.
 
 ## License
 

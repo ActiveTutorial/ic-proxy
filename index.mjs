@@ -28,6 +28,9 @@ export async function pair(first, second) {
         "User-Agent": "M"
       }
     });
+    if (response.status === 500) {
+      return { result: null, emoji: null, isNew: false };
+    }
     const text = await response.text();
     return JSON.parse(text);
   } finally {
@@ -60,6 +63,9 @@ export async function check(first, second, result) {
         "User-Agent": "M"
       }
     });
+    if (response.status === 500) {
+      return { valid: false, emoji: null };
+    }
     const text = await response.text();
     return JSON.parse(text);
   } finally {
